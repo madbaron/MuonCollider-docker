@@ -8,7 +8,6 @@ The incremental images for the framework can be built with the following command
 cd AlmaLinux8
 ./build.sh
 ```
-
 The build script will create images under the `infnpd` repository and the
 `devel` tag.
 
