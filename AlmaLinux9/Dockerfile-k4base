@@ -31,7 +31,7 @@ RUN source /opt/setup_spack.sh && \
 RUN source /opt/setup_spack.sh && \
     spack env create k4base && \
     spack env activate k4base && \
-    cp ${SPACK_ROOT}/var/key4hep-spack/environments/key4hep-common/packages.yaml ${SPACK_ENV} && \
+    cp ${SPACK_ROOT}/var/key4hep-spack/environments/key4hep-common/*.yaml ${SPACK_ENV} && \
     cp ${SPACK_ROOT}/var/key4hep-spack/environments/key4hep-release/spack.yaml ${SPACK_ENV} && \
     echo "source /opt/setup_spack.sh" > ${HOME}/setup_env.sh && \
     echo "spack env activate k4base" >> ${HOME}/setup_env.sh && \
