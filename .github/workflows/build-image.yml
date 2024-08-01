@@ -53,17 +53,6 @@ jobs:
             VERSION=${{ steps.meta.outputs.version }}
             REPOSITORY=ghcr.io/${{env.OWNER_LC}}
           tags: ghcr.io/${{env.OWNER_LC}}/mucoll-spack:${{steps.meta.outputs.version}}-${{matrix.os.suffix}}
-      - name: Build and Push (mucoll-k4base)
-      id: docker_build_mucoll-k4base
-      uses: docker/build-push-action@v4
-      with:
-        push: true
-        context: ./${{matrix.os.dir}}
-        file: ./${{matrix.os.dir}}/Dockerfile-k4base
-        build-args: |
-          VERSION=${{ steps.meta.outputs.version }}
-          REPOSITORY=ghcr.io/${{env.OWNER_LC}}
-        tags: ghcr.io/${{env.OWNER_LC}}/mucoll-spack:${{steps.meta.outputs.version}}-${{matrix.os.suffix}}
       - name: Build and Push (mucoll-sim)
         id: docker_build_mucoll-sim
         uses: docker/build-push-action@v4
