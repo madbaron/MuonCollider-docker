@@ -1,21 +1,10 @@
 name: build-image
 on:
-  push:
-    branches:
-      - 'master'
-      - 'main'
-      - 'key4hep*'
-    tags:
-      - 'v*'
-  pull_request:
-    branches:
-      - 'master'
-      - 'main'
   workflow_dispatch:
 jobs:
   build:
     runs-on: self-hosted
-    timeout-minutes: 720
+    timeout-minutes: 1440
     strategy:
       matrix:
         os: [{dir: AlmaLinux9,suffix: alma9}]
@@ -54,24 +43,13 @@ jobs:
             REPOSITORY=ghcr.io/${{env.OWNER_LC}}
           tags: ghcr.io/${{env.OWNER_LC}}/mucoll-spack:${{steps.meta.outputs.version}}-${{matrix.os.suffix}}
       - name: Build and Push (mucoll-k4base)
-      id: docker_build_mucoll-k4base
-      uses: docker/build-push-action@v4
-      with:
-        push: true
-        context: ./${{matrix.os.dir}}
-        file: ./${{matrix.os.dir}}/Dockerfile-k4base
-        build-args: |
-          VERSION=${{ steps.meta.outputs.version }}
-          REPOSITORY=ghcr.io/${{env.OWNER_LC}}
-        tags: ghcr.io/${{env.OWNER_LC}}/mucoll-spack:${{steps.meta.outputs.version}}-${{matrix.os.suffix}}
-      - name: Build and Push (mucoll-sim)
-        id: docker_build_mucoll-sim
+        id: docker_build_mucoll-k4base
         uses: docker/build-push-action@v4
         with:
           push: true
           context: ./${{matrix.os.dir}}
-          file: ./${{matrix.os.dir}}/Dockerfile-sim
+          file: ./${{matrix.os.dir}}/Dockerfile-k4base
           build-args: |
             VERSION=${{ steps.meta.outputs.version }}
             REPOSITORY=ghcr.io/${{env.OWNER_LC}}
-          tags: ghcr.io/${{env.OWNER_LC}}/mucoll-sim:${{steps.meta.outputs.version}}-${{matrix.os.suffix}}
+          tags: ghcr.io/${{env.OWNER_LC}}/mucoll-k4base:${{steps.meta.outputs.version}}-${{matrix.os.suffix}}
