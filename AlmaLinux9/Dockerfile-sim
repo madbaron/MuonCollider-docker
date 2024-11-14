@@ -8,7 +8,7 @@ ARG REPOSITORY=infnpd
 FROM ${REPOSITORY}/mucoll-spack:${VERSION}-alma9
 
 # Adding repositories: Key4hep + MuColl
-ARG KEY4HEP_COMMIT=dc0b2bc4aaad8f3ef5f3c7f62ff5b0277a554eee
+ARG KEY4HEP_COMMIT=6cb16c39ab85fbc211e50be804fa7a15f24ccebc
 ARG MUCOLL_COMMIT=7c7b4e01f999056d65787b35b063a1b129c67638
 
 RUN source /opt/setup_spack.sh && \
